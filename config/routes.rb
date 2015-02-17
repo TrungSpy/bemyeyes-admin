@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'user/search', as:"find_user"
+  patch 'user/update'
+
   get 'session/new', as:"new_user_session_path"
   post 'session/login'
 

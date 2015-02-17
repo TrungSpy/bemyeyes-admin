@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'session/new', as:"new_user_session_path"
+  post 'session/login'
+
+  get 'session/delete', as:"destroy_user_session_path"
+  post 'session/logout'
+
+  root to: 'home#index'
+  get 'home/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

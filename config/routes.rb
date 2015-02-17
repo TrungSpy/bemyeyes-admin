@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   delete 'session/logout', as:"destroy_user_session_path"
 
 
-  root to: 'home#index'
+  root to: 'home#show'
   get 'home/show'
+  get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

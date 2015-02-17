@@ -3,16 +3,21 @@ class UserController < ApplicationController
   def search
     email = params[:email]
     @user = User.first(email:email)
+    if @user.nil?
+      redirect_to "/", alert:"user not found"
+    end
+
   end
 
   def update
-     password = params[:password]
+    password = params[:password]
     repeat_password = params[:repeat_password]
     role = params[:role]
-        if !password.blank? && !repeat_password.blank? && password != repeat_password
+    if !password.blank? && !repeat_password.blank? && password != repeat_password
       redirect_to find_user_path(email:@user.email), :alert => 'passwords must match'
       return
     end
+    @user.password = password
     @user.role = role
     @user.save!
     respond_to do |format|
@@ -23,14 +28,14 @@ class UserController < ApplicationController
       end
     end
 
-      end
-  
+  end
+
   private
-    def set_user
-      @user = User.find(params["user"]["id"])
-    end
+  def set_user
+    @user = User.find(params["user"]["id"])
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :inactive)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :inactive)
+  end
 end

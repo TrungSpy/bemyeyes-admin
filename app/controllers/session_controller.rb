@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   def new
     unless session[:user_id].nil?
-       redirect_to( '/', alert: "Please log out")
+      redirect_to( '/', alert: "Please log out")
     end
   end
 
@@ -9,11 +9,11 @@ class SessionController < ApplicationController
     email = params[:email]
     password = params[:password]
     if email.blank? || password.blank?
-     redirect_to({ action: 'new' }, alert: "Please provide both email and password")
-     return
+      redirect_to({ action: 'new' }, alert: "Please provide both email and password")
+      return
     end
     user = User.authenticate_using_email(email, password)
-Rails.logger.info "User is here : #{user}"
+    Rails.logger.info "User is here : #{user}"
     unless user.nil?
       session[:user_id] = user.id
       redirect_to "/"

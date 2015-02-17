@@ -32,6 +32,13 @@ class UserController < ApplicationController
 
   private
   def set_user
+    unless params["blind"].nil?
+      params["user"] = params["blind"]
+    end
+    unless params["helper"].nil?
+      params["user"] = params["helper"]
+    end
+
     @user = User.find(params["user"]["id"])
   end
   # Never trust parameters from the scary internet, only allow the white list through.

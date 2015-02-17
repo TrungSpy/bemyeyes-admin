@@ -13,6 +13,11 @@ class SessionController < ApplicationController
       return
     end
     user = User.authenticate_using_email(email, password)
+    unless user.is_admin
+      redirect_to({ action: 'new' }, alert: "User not admin")
+      return
+    end
+
     Rails.logger.info "User is here : #{user}"
     unless user.nil?
       session[:user_id] = user.id

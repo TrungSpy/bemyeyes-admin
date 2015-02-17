@@ -17,7 +17,10 @@ class UserController < ApplicationController
       redirect_to find_user_path(email:@user.email), :alert => 'passwords must match'
       return
     end
-    @user.password = password
+    unless password.blank?
+      @user.password = password
+    end
+
     @user.role = role
     @user.save!
     respond_to do |format|

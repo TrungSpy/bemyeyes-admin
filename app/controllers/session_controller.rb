@@ -18,8 +18,8 @@ class SessionController < ApplicationController
       return
     end
 
-    unless user.is_admin
-      redirect_to({ action: 'new' }, alert: "User not admin")
+    unless user.is_admin || user.is_external_user
+      redirect_to({ action: 'new' }, alert: "User not admin or user is external user")
       return
     end
 

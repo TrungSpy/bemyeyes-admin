@@ -55,8 +55,6 @@ class User
 
   before_save :encrypt_password
   before_create :set_unique_id
-  before_save :convert_times_to_utc
-  after_save :user_saved
 
   before_validation :generate_auth_token
 
@@ -165,10 +163,6 @@ class User
   def calculate_expiry_time()
     now = Time.now
     self.expiry_time = Time.new(now.year, now.month, now.day, 0, 0, 0) + 30.days.to_i
-  end
-
-  def user_saved
-    EventBus.announce(:user_saved, user_id: _id)
   end
 
   def convert_times_to_utc

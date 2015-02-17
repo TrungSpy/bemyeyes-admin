@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   get 'session/new', as:"new_user_session_path"
   post 'session/login'
 
-  get 'session/delete', as:"destroy_user_session_path"
-  post 'session/logout'
+  delete 'session/logout', as:"destroy_user_session_path"
+
 
   root to: 'home#index'
   get 'home/index'

@@ -1,5 +1,9 @@
 <h1>User </h1>
 <p><strong>Email: </strong><%= @user.email %></p>
+<% if @user.is_external_user %>
+  <div class="bg-warning">This is a facebook user, please don't change password or make admin</div>
+<%end %>
+
 <%= form_for @user, url: {action: "update"} do |f| -%>
   <% if @user.errors.any? %>
     <div id="error_explanation">

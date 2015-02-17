@@ -13,6 +13,11 @@ class SessionController < ApplicationController
       return
     end
     user = User.authenticate_using_email(email, password)
+    if user.nil?
+       redirect_to({ action: 'new' }, alert: "User not found")
+      return
+    end
+
     unless user.is_admin
       redirect_to({ action: 'new' }, alert: "User not admin")
       return

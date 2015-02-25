@@ -37,10 +37,6 @@
   <%= f.check_box :is_admin, :disabled => @user.is_external_user %>
 </div>
 
-
-
-
-
 <div class="form-group">
   <%= label_tag(:password, "Password") %>
   <%= password_field_tag :password, "", class: "form-control", :disabled => @user.is_external_user %>
@@ -50,9 +46,10 @@
   <%= password_field_tag :repeat_password, "", class: "form-control", :disabled => @user.is_external_user %>
 </div>
 
-
+<div class="btn-group">
 <button type="submit" class="btn btn-default">Update</button>
 <% end -%>
-<%= link_to 'Destroy', delete_user_path(:user_id => @user.id), :method => :delete, :confirm => "Are you sure?" %>
+<%= button_to 'Destroy', delete_user_path(:user_id => @user.id), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger" %>
+</div>
 </p>
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'user/search', as:"find_user"
   patch 'user/update'
+  delete 'user/destroy/:user_id', to: "user#delete", as:'delete_user'
 
   get 'session/new', as:"new_user_session_path"
   post 'session/login'

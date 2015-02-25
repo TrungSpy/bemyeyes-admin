@@ -9,6 +9,17 @@ class UserController < ApplicationController
 
   end
 
+  def delete
+    user_id = params[:user_id]
+    if user_id = current_user.id 
+      redirect_to "/", alert:"Can't delete your self"
+      return
+    end
+
+    User.find(user_id).destroy
+    redirect_to "/", alert:"User deleted"
+  end
+
   def update
     password = params[:password]
     repeat_password = params[:repeat_password]

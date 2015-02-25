@@ -32,6 +32,11 @@
   <%= label_tag(:inactive, "Inactive") %>
   <%= f.check_box :inactive %>
 </div>
+<div class="form-group">
+  <%= label_tag(:blocked, "Blocked") %>
+  <%= f.check_box :blocked %>
+</div>
+
 <div class="form-group text-danger">
   <%= label_tag(:is_admin, "Admin") %>
   <%= f.check_box :is_admin, :disabled => @user.is_external_user %>

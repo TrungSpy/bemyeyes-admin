@@ -11,7 +11,7 @@ class UserController < ApplicationController
 
   def delete
     user_id = params[:user_id]
-    if user_id = current_user.id 
+    if user_id = current_user.id
       redirect_to "/", alert:"Can't delete your self"
       return
     end
@@ -33,6 +33,7 @@ class UserController < ApplicationController
     end
 
     @user.role = role
+    @user.languages = params[:languages].collect(&:strip)
     @user.save!
     respond_to do |format|
       if @user.set(user_params)
@@ -60,3 +61,4 @@ class UserController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :inactive, :is_admin, :blocked)
   end
 end
+

@@ -25,9 +25,10 @@
   <%= f.text_field :last_name %>
 </div>
 <div class="form-group">
+  <div class="bg-warning"">Please note: At the moment you cannot add languages, only change the current(s)</div>
   <%= label_tag(:languages, "Languages") %>
   <% @user.languages.each do |lang|%>
-    <%= text_field_tag "languages[]", lang %>
+    <%= text_field_tag "languages[]", lang, id:"lang" %>
   <% end %>
 </div>
 

@@ -69,7 +69,7 @@
   Request #<%= index %></br>
 Created At: <%= request.created_at %></br>
 Blind: <a href="/user/search?user_id=<%= request.blind.user_id%>&email="><%= request.blind %></a></br>
-Helper:  <%= request.helper%></br>
+Helper: <a href="/user/search?user_id=<%= request.helper.user_id%>&email="><%= request.helper %></a></br>
 <% end %>
 </br>
 </div>

@@ -14,8 +14,13 @@ class UserController < ApplicationController
     if @user.nil?
       redirect_to "/", alert:"user not found"
     end
-    @requests = Request.where(blind_id: @user._id)
-  end
+    @requests = Request.where("$or" => [
+        {blind_id:@user.user_id},
+        {helper_id:@user.user_id}
+    ]
+)
+
+      end
 
   def delete
     user_id = params[:user_id]

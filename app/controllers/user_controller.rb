@@ -6,7 +6,8 @@ class UserController < ApplicationController
     email.strip!
     @user = User.first(email:email)
     if @user.nil?
-       @user = User.first(user_id:email)
+        user_id= params[:user_id]
+       @user = User.first(user_id:user_id)
     end
 
     if @user.nil?

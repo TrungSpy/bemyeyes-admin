@@ -13,6 +13,7 @@ class UserController < ApplicationController
 
     if @user.nil?
       redirect_to "/", alert:"user not found"
+      return
     end
     @requests = Request.where("$or" => [
         {blind_id:@user._id},

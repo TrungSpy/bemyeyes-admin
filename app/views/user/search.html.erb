@@ -65,7 +65,8 @@
 </div>
 <div>
   <h2>Requests</h2>
-<% @requests.each do |request|%>
+<% @requests.each_with_index do |request, index|%>
+  Request #<%= index %>
   <%= request.created_at %>
   <%= request.blind %>
 <% end %>

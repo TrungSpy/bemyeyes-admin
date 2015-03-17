@@ -68,7 +68,7 @@
 <% @requests.each_with_index do |request, index|%>
   Request #<%= index %></br>
 Created At: <%= request.created_at %></br>
-Blind: <a href="user/search?utf8=✓&email=&user_id=<%= request.blind.user_id%>"><%= request.blind %></a></br>
+Blind: <a href="/user/search?user_id=<%= request.blind.user_id%>"><%= request.blind %></a></br>
 Helper:  <%= request.helper%></br>
 <% end %>
 </br>

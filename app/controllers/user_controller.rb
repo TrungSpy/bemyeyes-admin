@@ -5,6 +5,10 @@ class UserController < ApplicationController
     email.downcase!
     email.strip!
     @user = User.first(email:email)
+    if user.nil?
+       @user = User.first(user_id:email)
+    end
+
     if @user.nil?
       redirect_to "/", alert:"user not found"
     end

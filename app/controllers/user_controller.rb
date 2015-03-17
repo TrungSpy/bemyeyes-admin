@@ -15,8 +15,8 @@ class UserController < ApplicationController
       redirect_to "/", alert:"user not found"
     end
     @requests = Request.where("$or" => [
-        {blind_id:@user.user_id},
-        {helper_id:@user.user_id}
+        {blind_id:@user._id},
+        {helper_id:@user._id}
     ]
 )
 

@@ -14,7 +14,7 @@ class UserController < ApplicationController
     if @user.nil?
       redirect_to "/", alert:"user not found"
     end
-
+    @requests = Request.where(blind_id: @user._id)
   end
 
   def delete

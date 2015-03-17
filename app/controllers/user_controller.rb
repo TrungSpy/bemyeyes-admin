@@ -2,6 +2,8 @@ class UserController < ApplicationController
   before_action :set_user, only: [:update]
   def search
     email = params[:email]
+    email.downcase!
+    email.strip!
     @user = User.first(email:email)
     if @user.nil?
       redirect_to "/", alert:"user not found"

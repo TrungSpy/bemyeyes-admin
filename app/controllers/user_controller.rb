@@ -5,7 +5,7 @@ class UserController < ApplicationController
     email.downcase!
     email.strip!
     @user = User.first(email:email)
-    if user.nil?
+    if @user.nil?
        @user = User.first(user_id:email)
     end
 

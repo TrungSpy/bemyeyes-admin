@@ -7,7 +7,8 @@ class UserController < ApplicationController
     @user = User.first(email:email)
     if @user.nil?
         user_id= params[:user_id]
-       @user = User.first(user_id:user_id)
+        user_id.strip!
+       @user = User.first(user_id:user_id.to_i)
     end
 
     if @user.nil?

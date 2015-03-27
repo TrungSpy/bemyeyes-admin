@@ -68,8 +68,7 @@
   <% @requests.each_with_index do |request, index|%>
     Request #<%= index %></br>
   Created At: <%= request.created_at %></br>
-  Token: <%= request.token %>
-  Session_id: <%= request.session_id %>
+<a href="/opentok/session_attach?session_id=<%= request.session_id %>&token=<%= request.token %>">Attach to session</a>
   <% unless request.blind.nil? %>
     Blind: <a href="/user/search?user_id=<%= request.blind.user_id%>&email="><%= request.blind %></a></br>
 <% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'opentok/session_attach'
+
   get 'user/search', as:"find_user"
   patch 'user/update'
   delete 'user/destroy/:user_id', to: "user#delete", as:'delete_user'

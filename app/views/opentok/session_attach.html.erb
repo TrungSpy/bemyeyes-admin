@@ -1,0 +1,17 @@
+<script src="//static.opentok.com/v2/js/opentok.min.js" ></script>
+<script type="text/javascript">
+  var apiKey    = '<%= @api_key %>';
+  var sessionId = '<%= @session_id %>';
+  var token     =  '<%= @token %>';
+
+  var session = OT.initSession(apiKey, sessionId);
+
+  session.on("streamCreated", function(event) {
+    session.subscribe(event.stream);
+  });
+
+  session.connect(token, function(error) {
+    var publisher = OT.initPublisher();
+    session.publish(publisher);
+  });
+</script>

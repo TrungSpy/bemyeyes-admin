@@ -6,21 +6,21 @@
 
 <%= form_for @user, url: {action: "update", method: "patch"} do |f| -%>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
   <% end %>
-  <%= f.hidden_field :id, :value => @user.id %>
-  <div class="form-group"> <%= label_tag(:first_name, "First Name") %>
-  <%= f.text_field :first_name %>
+  </ul>
 </div>
- <div class="form-group">
+  <% end %>
+<%= f.hidden_field :id, :value => @user.id %>
+<div class="form-group"> <%= label_tag(:first_name, "First Name") %>
+<%= f.text_field :first_name %>
+</div>
+<div class="form-group">
   <%= label_tag(:last_name, "Last Name") %>
   <%= f.text_field :last_name %>
 </div>
@@ -29,10 +29,10 @@
   <%= label_tag(:languages, "Languages") %>
   <% @user.languages.each do |lang|%>
     <%= text_field_tag "languages[]", lang, id:"lang" %>
-  <% end %>
+<% end %>
 </div>
 
- <div class="form-group">
+<div class="form-group">
   <%= label_tag(:role, "Role") %>
   <%= select_tag "role", options_for_select([ "blind", "helper" ], @user.role) %>
 </div>
@@ -65,20 +65,22 @@
 </div>
 <div>
   <h2>Requests</h2>
-<% @requests.each_with_index do |request, index|%>
-  Request #<%= index %></br>
-Created At: <%= request.created_at %></br>
-<% unless request.blind.nil? %>
-Blind: <a href="/user/search?user_id=<%= request.blind.user_id%>&email="><%= request.blind %></a></br>
+  <% @requests.each_with_index do |request, index|%>
+    Request #<%= index %></br>
+  Created At: <%= request.created_at %></br>
+  Token: <%= request.token %>
+  Session_id: <%= request.session_id %>
+  <% unless request.blind.nil? %>
+    Blind: <a href="/user/search?user_id=<%= request.blind.user_id%>&email="><%= request.blind %></a></br>
 <% end %>
 
-<% unless request.helper.nil? %>
-Helper: <a href="/user/search?user_id=<%= request.helper.user_id%>&email="><%= request.helper %></a></br>
+  <% unless request.helper.nil? %>
+    Helper: <a href="/user/search?user_id=<%= request.helper.user_id%>&email="><%= request.helper %></a></br>
 <% end %>
-<hr>
+  <hr>
 <% end %>
-</br>
+  </br>
 </div>
   <% end %>
 
-  <%= button_to 'Destroy', delete_user_path(:user_id => @user.id), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger" %>
+<%= button_to 'Destroy', delete_user_path(:user_id => @user.id), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger" %>

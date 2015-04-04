@@ -25,12 +25,13 @@ class UserController < ApplicationController
 
   def delete
     user_id = params[:user_id]
-    if user_id == current_user.id
-      redirect_to "/", alert:"Can't delete your self"
-      return
-    end
 
-    User.find(user_id).destroy
+    user = User.find(user_id)
+    if user.is_admin
+      return redirect_to "/", alert:"Can't delete admin"
+      
+    end
+    user.destroy
     redirect_to "/", alert:"User deleted"
   end
 

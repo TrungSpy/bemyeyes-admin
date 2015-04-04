@@ -25,7 +25,7 @@ class UserController < ApplicationController
 
   def delete
     user_id = params[:user_id]
-    if user_id = current_user.id
+    if user_id == current_user.id
       redirect_to "/", alert:"Can't delete your self"
       return
     end

@@ -1,6 +1,8 @@
 <h1>Request Overview</h1>
 <%= @request.short_id%>
-<%= @request.inspect%>
+
+
+<%= @events.inspect%>
 <% @events.each do |event| %>
 <%= event[:name] %>
 <%= event.inspect %>

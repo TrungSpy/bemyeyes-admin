@@ -5,5 +5,18 @@ class RequestController < ApplicationController
       redirect_to "/", alert:"request not found"
       return
     end
+    @events = find_request_data @request._id
+
+  end
+
+  def find_request_data request_id
+    request_id = request_id.to_s
+    coll = MongoMapper.database.collection("event_logs")
+    event_logs = coll.aggregate([
+      {"$match"=>
+        {"event_log_objects" => {"$elemMatch" =>{"json_serialized"=> "\"#{request_id} \""}}}
+        }])
+
+    event_logs.map {|el|  {name:el.name}}
   end
 end

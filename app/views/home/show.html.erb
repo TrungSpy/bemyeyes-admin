@@ -14,3 +14,11 @@
   <button type="submit" class="btn btn-default">Search</button><% end -%>
 </p>
 
+<p>
+<%= form_tag('/request/search', method: :get) do -%>
+  <div class="form-group">
+  <%= label_tag(:session_id, "SessionId:") %>
+  <%= email_field_tag :session_id, "", class: "form-control" %>
+  </div>
+  <button type="submit" class="btn btn-default">Search</button><% end -%>
+</p>

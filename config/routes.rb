@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   delete 'session/logout', as:"destroy_user_session_path"
 
+  get 'request/search', as: 'find_request'
 
   root to: 'home#show'
   get 'home/show'

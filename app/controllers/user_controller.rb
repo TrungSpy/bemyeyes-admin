@@ -1,5 +1,4 @@
 class UserController < ApplicationController
-  before_filter :ensure_user_authenticated!
   before_action :set_user, only: [:update]
   def search
     email = params[:email]

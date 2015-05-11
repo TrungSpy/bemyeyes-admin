@@ -17,6 +17,7 @@ class RequestController < ApplicationController
         {"event_log_objects" => {"$elemMatch" =>{"json_serialized"=> "\"#{request_id} \""}}}
         }])
 
-    event_logs.map {|el|  {name:el.name}}
+    #event_logs.map {|el|  {name:el.name}}
+    event_logs
   end
 end

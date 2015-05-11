@@ -1,0 +1,6 @@
+<h1>Request Overview</h1>
+<%= @request.short_id%>
+
+<% @events.each |event| %>
+<%= event[:name]%>
+<% end %>

@@ -14,8 +14,10 @@ class RequestController < ApplicationController
     coll = MongoMapper.database.collection("event_logs")
     event_logs = coll.aggregate([
       {"$match"=>
-        {"event_log_objects" => {"$elemMatch" =>{"json_serialized"=> "\"#{request_id} \""}}}
-        }])
+        {"event_log_objects" =>
+          {"$elemMatch" =>{"json_serialized"=> "\"#{request_id}\""}}
+          }}
+    ])
 
     #event_logs.map {|el|  {name:el.name}}
     event_logs

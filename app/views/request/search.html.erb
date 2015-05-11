@@ -1,9 +1,34 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.css" rel="stylesheet" type="text/css">
 <h1>Request Overview</h1>
 <%= @request.short_id%>
 
 
 <%= @events.inspect%>
-<% @events.each do |event| %>
-<%= event[:name] %>
-<%= event.inspect %>
-<% end %>
+
+
+
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+
+  <% @events.each do |event| %>
+  {id: "<%= event["_id"] %>", content: '<%= event["name"] %>', start: '<%= event["created_at"]  %>'},
+  <% end %>
+  ]);
+
+  // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(
+    container,
+    items,
+    options
+    );
+</script>

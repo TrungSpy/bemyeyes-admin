@@ -11,7 +11,6 @@ class RequestController < ApplicationController
 
   def find_request_data request_id
     request_id = request_id.to_s
-    Rails.logger.info "request id: #{request_id}"
     coll = MongoMapper.database.collection("event_logs")
     event_logs = coll.aggregate([
       {"$match"=>
@@ -20,7 +19,6 @@ class RequestController < ApplicationController
           }}
     ])
 
-    #event_logs.map {|el|  {name:el.name}}
     event_logs
   end
 end

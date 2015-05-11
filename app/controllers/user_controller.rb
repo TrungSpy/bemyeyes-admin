@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+  before_filter :ensure_user_authenticated!
   before_action :set_user, only: [:update]
   def search
     email = params[:email]
@@ -6,9 +7,9 @@ class UserController < ApplicationController
     email.strip!
     @user = User.first(email:email)
     if @user.nil?
-        user_id= params[:user_id]
-        user_id.strip!
-       @user = User.first(user_id:user_id.to_i)
+      user_id= params[:user_id]
+      user_id.strip!
+      @user = User.first(user_id:user_id.to_i)
     end
 
     if @user.nil?
@@ -16,12 +17,12 @@ class UserController < ApplicationController
       return
     end
     @requests = Request.where("$or" => [
-        {blind_id:@user._id},
-        {helper_id:@user._id}
+      {blind_id:@user._id},
+      {helper_id:@user._id}
     ]
-)
+                             )
 
-      end
+  end
 
   def delete
     user_id = params[:user_id]
@@ -29,7 +30,7 @@ class UserController < ApplicationController
     user = User.find(user_id)
     if user.is_admin
       return redirect_to "/", alert:"Can't delete admin"
-      
+
     end
     user.destroy
     redirect_to "/", alert:"User deleted"
@@ -76,4 +77,3 @@ class UserController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :inactive, :is_admin, :blocked)
   end
 end
-

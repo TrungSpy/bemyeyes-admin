@@ -17,7 +17,7 @@
   var items = new vis.DataSet([
 
   <% @events.each do |event| %>
-  {id: "<%= event["_id"] %>", content: '<%= event["name"] %>', start: '<%= event["created_at"]  %>'},
+  {id: "<%= event["_id"] %>", content: '<a href="#"  title="<%= event.inspect %>"><%= event["name"] %></a>', start: '<%= event["created_at"]  %>'},
   <% end %>
   ]);
 
@@ -30,4 +30,7 @@
     items,
     options
     );
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>

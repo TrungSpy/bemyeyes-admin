@@ -15,8 +15,8 @@ class RequestController < ApplicationController
     event_logs = coll.aggregate([
       {"$match"=>
         {"event_log_objects" =>
-          {"$elemMatch" =>{"json_serialized"=> "\"#{request_id}\""}}
-          }}
+          {"$elemMatch" =>{"json_serialized"=> Regexp.new(request_id)}
+          }}}
     ])
 
     event_logs

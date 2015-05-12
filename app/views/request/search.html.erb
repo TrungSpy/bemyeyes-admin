@@ -1,12 +1,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.css" rel="stylesheet" type="text/css">
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 <h1>Request Overview</h1>
 <p>request short_id: <%= @request.short_id%></p>
 
 <div id="visualization"></div>
 <p>
   events from db:<br/>
-<%= @events.inspect%>
+  <pre class="prettyprint"><%= @events.inspect%></pre>
 </p>
 <script type="text/javascript">
   // DOM element where the Timeline will be attached

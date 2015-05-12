@@ -1,15 +1,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/3.11.0/vis.css" rel="stylesheet" type="text/css">
 <h1>Request Overview</h1>
-<%= @request.short_id%>
-
-
-<%= @events.inspect%>
-
-
+<p>request short_id: <%= @request.short_id%></p>
 
 <div id="visualization"></div>
-
+<p>
+  events from db:<br/>
+<%= @events.inspect%>
+</p>
 <script type="text/javascript">
   // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');

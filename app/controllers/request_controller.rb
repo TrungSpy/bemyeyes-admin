@@ -1,6 +1,6 @@
 class RequestController < ApplicationController
   def search
-    @request = Request.first(session_id:params[:session_id])
+    @request = Request.first(session_id:params[:session_id].strip)
     if @request.nil?
       redirect_to "/", alert:"request not found"
       return

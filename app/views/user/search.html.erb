@@ -71,6 +71,8 @@
 <a href="/opentok/session_attach?session_id=<%= request.session_id %>&token=<%= request.token %>">Attach to session</a>
   <% unless request.blind.nil? %>
     Blind: <a href="/user/search?&email=<%= request.blind.email %>&user_id=" ><%= request.blind %></a></br>
+    No of abuse reports: <%= request.blind.abuse_reports.count %>
+</br>
 </br>
 <% end %>
 

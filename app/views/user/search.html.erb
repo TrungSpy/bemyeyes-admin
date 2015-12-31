@@ -70,11 +70,13 @@
   Created At: <%= request.created_at %></br>
 <a href="/opentok/session_attach?session_id=<%= request.session_id %>&token=<%= request.token %>">Attach to session</a>
   <% unless request.blind.nil? %>
-    Blind: <a href="/user/search?user_id=&email="<%= request.blind.email%>><%= request.blind %></a></br>
+    Blind: <a href="/user/search?&email=<%= request.blind.email %>&user_id=" ><%= request.blind %></a></br>
+</br>
 <% end %>
 
   <% unless request.helper.nil? %>
-    Helper: <a href="/user/search?user_id=<%= request.helper.user_id%>&email="><%= request.helper %></a></br>
+
+    Helper: <a href="/user/search?&email=<%= request.helper.email %>&user_id=" ><%= request.helper%></a></br>
 <% end %>
   <hr>
 <% end %>
